@@ -2,10 +2,11 @@
 import React,{useRef, useEffect,useState} from 'react' 
 import {connect} from 'react-redux'
 
-import {updateName,updatePassword} from './redux/action'
+import {updateUser,updatePassword} from './redux/action'
 import {Link,BrowserRouter as Router,useHistory,withRouter} from 'react-router-dom'
 import Details from './details'
 import Register from './register'
+import {login} from './service'
 function mapStateToProps(state){
 return{
     currentUser: state.currentUser
@@ -14,19 +15,29 @@ return{
 
 const mapDisdpatchToProps= (dispatch)=>({
     
-   updateUserName:(name)=>{dispatch(updateName(name))}
+   updateUserInRedux:(name)=>{dispatch(updateUser(name))}
     
     })
 export default connect(mapStateToProps,mapDisdpatchToProps)(function Login(props){
 
     const [flag,setFlag]=useState(0)
 
-const {updateUserName,currentUser}=props
+const {updateUserInRedux,currentUser}=props
 
    function loginUser(){
-       console.log(updateUserName);
-       
-      updateUserName(nameRef.current.value)
+    
+       login(passwordRef.current.value)
+       .then((response)=>{
+        console.log(response);
+        if(!response)
+        alert('not allow')
+        else
+        updateUserInRedux(response)
+        console.log(currentUser);
+        
+
+       })
+     
     }
 
     const nameRef=useRef(null)
@@ -34,7 +45,7 @@ const {updateUserName,currentUser}=props
 
     return(
         <>
-        {!currentUser.name && !flag &&
+        {!currentUser && !flag &&
         <div>
 <h3>please enter details:   </h3>
 
@@ -47,8 +58,10 @@ const {updateUserName,currentUser}=props
 <h3>or new register:</h3><button onClick={()=>{setFlag(1)}}>new register</button>
 </div>
 }
-{currentUser.name && !flag &&
- <Details></Details>
+{currentUser && !flag &&
+
+
+ <Details ></Details>
 }
 {flag &&
 <Register></Register>

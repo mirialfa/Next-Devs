@@ -4,10 +4,7 @@ import {createStore} from 'redux'
 import produce from 'immer'
 
 const initialState={
-    currentUser:{
-        name:null,
-        pass:null
-    }
+    currentUser:null
     
 }
 
@@ -20,7 +17,15 @@ switch (action.type) {
         case 'UPDATE_PASSWORD':
         state.currentUser.password=action.payload
         break;
-
+        case 'UPDATE_USER':{
+            console.log(action.payload);
+            
+            state.currentUser=action.payload
+            console.log(state.currentUser);
+            
+            break;
+        }
+            
     default:
         break;
 }

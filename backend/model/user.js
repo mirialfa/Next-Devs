@@ -32,14 +32,3 @@ const userSchema=mongoose.Schema({
 
 module.exports=mongoose.model('User',userSchema)
 
-
-
-// 	"company":""
-	// "Username":"dina",
-	// "Emailaddress":"tom@gmail.com",
-	// "FirstName":"",
-	// "LastName":"",
-	// "City":"",
-	// "Country":"",
-	// "PostalCode":"",
-	// "Aboutme":""

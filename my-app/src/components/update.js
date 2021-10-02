@@ -1,7 +1,7 @@
 
 import React,{useRef, useState} from 'react' 
 import Details from './details'
-import {sendUserDetails} from './service'
+import {updateUserDetails} from './service'
 import {connect} from 'react-redux'
 import {updateUser} from './redux/action'
 
@@ -16,9 +16,9 @@ function mapStateToProps(state){
        updateUseInRedux:(name)=>{dispatch(updateUser(name))}
         
         })
-export default connect(mapStateToProps,mapDisdpatchToProps)( function Register(props){
+export default connect(mapStateToProps,mapDisdpatchToProps)( function UpdateDetails(props){
 
-const {updateUseInRedux}=props
+const {updateUseInRedux,currentUser}=props
 
     const companyRef=useRef(null)
     const userNameRef=useRef(null)
@@ -27,11 +27,11 @@ const {updateUseInRedux}=props
     const lastNameRef=useRef(null)
     const cityRef=useRef(null)
     const countryRef=useRef(null)
-    const postalCodeRef=useRef(null)
+    const postalCodeRef=useRef(currentUser.PostalCode)
     const aboutMeRef=useRef(null)
 
 // אני יוצרת אוביקט מהנתונים שהוזנו ואת האוביקט הזה אני שולחת לפונקציה שיושבת בסרוויס
-  async function save(){
+  function update(){
       const user={
           Username:userNameRef.current.value,
           firstName:firstNameRef.current.value,
@@ -39,16 +39,18 @@ const {updateUseInRedux}=props
           company:companyRef.current.value,
           aboutMe:aboutMeRef.current.value,
           Emailaddress:emailAddressRef.current.value,
-          PostalCode:postalCodeRef.current.value,
+          PostalCode:currentUser.PostalCode,
           city:cityRef.current.value,
           company:companyRef.current.value
 
       }
-     sendUserDetails(user)
+      console.log(user);
+      
+      updateUserDetails(user)
      .then((newUser)=>{
     console.log(newUser);
-     updateUseInRedux(newUser)
-    setFlag(1)
+    updateUseInRedux(newUser)
+    
      })
      
      
@@ -61,30 +63,31 @@ const {updateUseInRedux}=props
             !flag &&
         
         <div>
-<h3>please enter details:   </h3>
+<h3>update....   </h3>
 
-        <input placeholder='enter company' ref={companyRef}></input>
+        <input placeholder={currentUser.company} ref={companyRef}></input>
         <br></br>
-        <input placeholder='enter userName' ref={userNameRef}></input>
+        <input placeholder={currentUser.Username} ref={userNameRef}></input>
         <br></br>
-        <input placeholder='enter emailAddress' ref={emailAddressRef}></input>
+        <input placeholder={currentUser.EmailAddress} ref={emailAddressRef}></input>
         <br></br>
-        <input placeholder='enter firstName' ref={firstNameRef}></input>
+        <input placeholder={currentUser.firstName}ref={firstNameRef}></input>
         <br></br>
-        <input placeholder='enter lastName' ref={lastNameRef}></input>
+        <input placeholder={currentUser.lastName} ref={lastNameRef}></input>
         <br></br>
-        <input placeholder='enter city' ref={cityRef}></input>
+        <input placeholder={currentUser.city} ref={cityRef}></input>
         <br></br>
-        <input placeholder='enter country' ref={countryRef}></input>
+        <input placeholder={currentUser.country} ref={countryRef}></input>
         <br></br>
-        <input placeholder='enter potalCode' ref={postalCodeRef}></input>
+        <input placeholder={currentUser.PostalCode} ref={postalCodeRef}></input>
         <br></br>
-        <input placeholder='enter aboutMe' ref={aboutMeRef}></input>
+        <input placeholder={currentUser.aboutMe} ref={aboutMeRef}></input>
         
         <br></br>
 
-<button onClick={async()=>{
-  await  save()}}>ok</button><br></br>
+<button onClick={()=>{
+   update()
+    setFlag(1)}}>ok</button><br></br>
 </div>
 }
 {flag &&

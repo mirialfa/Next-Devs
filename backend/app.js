@@ -12,19 +12,26 @@ app.use((req, res, next) => {
     console.log('midd');
     
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authoriztion");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     if (req.method === "OPTIONS") {
-        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET, OPTIONS");
         return res.status(200).json({});
     }
     next();
+
 });
 app.use('/',(req,res,next)=>{
     if(!req.originalUrl.includes('signin')){
         console.log('good func');
       const token=req.headers["authorization"]
       if(token){
+          console.log(token);
+          
         const user=jwt.verify(req.headers["authorization"],process.env.MY_SECRET)
+        console.log(user);
+        
         if(!user)
         res.send('not allow access to Application')
 
