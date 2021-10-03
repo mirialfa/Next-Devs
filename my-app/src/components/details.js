@@ -42,12 +42,16 @@ logOut(currentUser.PostalCode)
         <button onClick={()=>{logOutUser()}} >logOut</button>
 <h3>your details:   </h3>
 
-    <h3>name: {currentUser.Username}</h3>
-    <h3>password: {currentUser.PostalCode}</h3>
     <h3>company: {currentUser.company}</h3>
-    <h3>emai: {currentUser.Emailaddress}</h3>
-    <h3>password: {currentUser.PostalCode}</h3>
-    <h3>about me: {currentUser.PostalCode}</h3>
+    <h3>Username: {currentUser.Username}</h3>
+    <h3>Emailaddress: {currentUser.Emailaddress}</h3>
+    <h3>firstName: {currentUser.firstName}</h3>
+    <h3>lastName: {currentUser.lastName}</h3>
+    <h3>city: {currentUser.city}</h3>
+    <h3>country: {currentUser.country}</h3>
+    <h3>PostalCode: {currentUser.PostalCode}</h3>  
+    <h3>about me: {currentUser.aboutMe}</h3>
+
     
     <button onClick={()=>{setFlag2(1)}} >update Your details...</button> 
     </div>}

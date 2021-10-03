@@ -12,9 +12,9 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import AdminNavbarLinks from "./AdminNavbarLinks.js";
 import RTLNavbarLinks from "./RTLNavbarLinks.js";
-import Button from "components/CustomButtons/Button.js";
+import Button from "../../components/CustomButtons/Button.js";
 
-import styles from "assets/jss/material-dashboard-react/components/headerStyle.js";
+import styles from "../../assets/jss/material-dashboard-react/components/headerStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -22,6 +22,7 @@ export default function Header(props) {
   const classes = useStyles();
   function makeBrand() {
     var name;
+    if(props.routes)
     props.routes.map(prop => {
       if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
         name = props.rtlActive ? prop.rtlName : prop.name;

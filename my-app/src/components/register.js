@@ -1,4 +1,3 @@
-
 import React,{useRef, useState} from 'react' 
 import Details from './details'
 import {sendUserDetails} from './service'
@@ -8,14 +7,10 @@ import {updateUser} from './redux/action'
 function mapStateToProps(state){
     return{
         currentUser: state.currentUser
-    }
-    }
-    
+    }}
     const mapDisdpatchToProps= (dispatch)=>({
         
-       updateUseInRedux:(name)=>{dispatch(updateUser(name))}
-        
-        })
+       updateUseInRedux:(name)=>{dispatch(updateUser(name))}})
 export default connect(mapStateToProps,mapDisdpatchToProps)( function Register(props){
 
 const {updateUseInRedux}=props
@@ -30,7 +25,6 @@ const {updateUseInRedux}=props
     const postalCodeRef=useRef(null)
     const aboutMeRef=useRef(null)
 
-// אני יוצרת אוביקט מהנתונים שהוזנו ואת האוביקט הזה אני שולחת לפונקציה שיושבת בסרוויס
   async function save(){
       const user={
           Username:userNameRef.current.value,
@@ -50,16 +44,12 @@ const {updateUseInRedux}=props
      updateUseInRedux(newUser)
     setFlag(1)
      })
-     
-     
   }
 
     const [flag,setFlag]=useState(0)
-
     return(
         <>{
             !flag &&
-        
         <div>
 <h3>please enter details:   </h3>
 

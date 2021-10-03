@@ -1,4 +1,3 @@
-
 import React,{useRef, useState} from 'react' 
 import Details from './details'
 import {updateUserDetails} from './service'
@@ -8,14 +7,11 @@ import {updateUser} from './redux/action'
 function mapStateToProps(state){
     return{
         currentUser: state.currentUser
-    }
-    }
-    
+    } }
+   
     const mapDisdpatchToProps= (dispatch)=>({
-        
-       updateUseInRedux:(name)=>{dispatch(updateUser(name))}
-        
-        })
+       updateUseInRedux:(name)=>{dispatch(updateUser(name))}})
+      
 export default connect(mapStateToProps,mapDisdpatchToProps)( function UpdateDetails(props){
 
 const {updateUseInRedux,currentUser}=props
@@ -30,7 +26,6 @@ const {updateUseInRedux,currentUser}=props
     const postalCodeRef=useRef(currentUser.PostalCode)
     const aboutMeRef=useRef(null)
 
-// אני יוצרת אוביקט מהנתונים שהוזנו ואת האוביקט הזה אני שולחת לפונקציה שיושבת בסרוויס
   function update(){
       const user={
           Username:userNameRef.current.value,
@@ -52,16 +47,12 @@ const {updateUseInRedux,currentUser}=props
     updateUseInRedux(newUser)
     
      })
-     
-     
   }
-
     const [flag,setFlag]=useState(0)
 
     return(
         <>{
             !flag &&
-        
         <div>
 <h3>update....   </h3>
 

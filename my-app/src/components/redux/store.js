@@ -8,7 +8,6 @@ const initialState={
     
 }
 
-// action:{type:"UPDATE_NAME", payload:"Rivka"}
 const reducer=produce((state,action)=>{
 switch (action.type) {
     case 'UPDATE_NAME':
@@ -21,6 +20,7 @@ switch (action.type) {
             console.log(action.payload);
             
             state.currentUser=action.payload
+            
             console.log(state.currentUser);
             
             break;
