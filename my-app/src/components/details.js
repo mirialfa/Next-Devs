@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import UpdateDetails from './update'
 import {logOut} from './service'
 import {updateUser} from './redux/action'
+import RegularButton from '../components/CustomButtons/Button'
 
 function mapStateToProps(state){
 return{
@@ -38,9 +39,10 @@ logOut(currentUser.PostalCode)
     return(
         <>
         {!logOutF &&
-        <div>
+        <div>            
         <button onClick={()=>{logOutUser()}} >logOut</button>
 <h3>your details:   </h3>
+      
 
     <h3>company: {currentUser.company}</h3>
     <h3>Username: {currentUser.Username}</h3>
@@ -52,7 +54,6 @@ logOut(currentUser.PostalCode)
     <h3>PostalCode: {currentUser.PostalCode}</h3>  
     <h3>about me: {currentUser.aboutMe}</h3>
 
-    
     <button onClick={()=>{setFlag2(1)}} >update Your details...</button> 
     </div>}
         

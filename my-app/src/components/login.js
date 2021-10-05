@@ -7,8 +7,12 @@ import Details from './details'
 import Register from './register'
 import {login} from './service'
 import Navbar from '../components/Navbars/Navbar'
-// import Footer from '../components/Footer/Footer'
+import Footer from '../components/Footer/Footer'
+import Input from '@mui/material/Input';
+// import Sidebar from '../components/Sidebar'
+
 import {MDCTextField} from '@material/textfield';
+// import Grid from '../components/Grid'
 import InputMaterialUi from 'input-material-ui';function mapStateToProps(state){
 return{
     currentUser: state.currentUser
@@ -44,6 +48,8 @@ const {updateUserInRedux,currentUser}=props
         <>
         <Navbar
          ></Navbar>
+
+         {/* <Footer></Footer> */}
         {!currentUser && !flag &&
         <div>
 <h3>please enter details:   </h3>

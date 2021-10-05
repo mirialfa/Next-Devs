@@ -69,7 +69,6 @@ const connectionParams = {
 
 mongoose.connect(process.env.DB_CONNECT,connectionParams)
 .then(()=>{
-   console.log('connect...');
    
 })
 .catch((err)=>{
@@ -77,8 +76,5 @@ console.log(err);
 
 })
 
-
-app.listen(4000,()=>{
-    console.log('listen...');
-    
+app.listen(4000,()=>{    
 })

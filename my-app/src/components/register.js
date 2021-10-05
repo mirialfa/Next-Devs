@@ -3,6 +3,13 @@ import Details from './details'
 import {sendUserDetails} from './service'
 import {connect} from 'react-redux'
 import {updateUser} from './redux/action'
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	Switch
+} from 'react-router-dom';
+
 
 function mapStateToProps(state){
     return{
@@ -27,15 +34,15 @@ const {updateUseInRedux}=props
 
   async function save(){
       const user={
-          Username:userNameRef.current.value,
-          firstName:firstNameRef.current.value,
-          lastName:lastNameRef.current.value,
-          company:companyRef.current.value,
-          aboutMe:aboutMeRef.current.value,
-          Emailaddress:emailAddressRef.current.value,
-          PostalCode:postalCodeRef.current.value,
-          city:cityRef.current.value,
-          company:companyRef.current.value
+        company:companyRef.current.value,
+        Username:userNameRef.current.value,
+        Emailaddress:emailAddressRef.current.value,
+        firstName:firstNameRef.current.value,
+        lastName:lastNameRef.current.value,
+        city:cityRef.current.value,
+        country:countryRef.current.value,
+        PostalCode:postalCodeRef.current.value,
+        aboutMe:aboutMeRef.current.value,
 
       }
      sendUserDetails(user)
@@ -77,6 +84,7 @@ const {updateUseInRedux}=props
   await  save()}}>ok</button><br></br>
 </div>
 }
+
 {flag &&
 <Details></Details>
 }
